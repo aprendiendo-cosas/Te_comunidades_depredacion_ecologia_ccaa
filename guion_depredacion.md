@@ -1,4 +1,4 @@
-# Guión de la sesión denominada "Competencia interespecífica"
+# Guión de la sesión denominada "Depredación"
 
 
 > + **_Versión_**: 2020-2021
@@ -10,45 +10,25 @@
 
 ## Objetivos 
 
-En esta guía se describen dos sesiones de una hora cada una. Tiene los siguientes objetivos. 
+En esta sesión abordaremos los elementos fundamentales para comprender el proceso de la depredación. Los objetivos más concretos son:
 
- + Definición del concepto de competencia interespecífica, que se pone de manifiesto en las comunidades ecológicas.
- + Aprender el impacto que tiene la competencia sobre el crecimiento de las poblaciones implicadas en dicha interacción. Además del ya conocido "freno" provocado por la competencia intraespecífica, analizaremos en qué medida la competencia entre especies también afecta al crecimiento poblacional. 
- + Estudiar el modelo de Lotka y Volterra como instrumento matemático para comprender el impacto de la competencia en las poblaciones de las especies afectadas.
+ + Definición del concepto de depredación, que se pone de manifiesto en las comunidades ecológicas.
+
+ + Incorporar a lo ya sabido sobre dinámica de poblaciones, el efecto que tiene sobre depredador y sobre presa el proceso de la depredación. Esto es muy importante para comprender cómo se ensamblan las comunidades ecológicas en la naturaleza.
+
+ + Estudiar el modelo de Lotka y Volterra como instrumento matemático para comprender el impacto de la depredación en las poblaciones de las especies afectadas.
+
+ + Seguir consolidando el conocimiento adquirido sobre dinámica de poblaciones y sobre herramientas matemáticas para su simulación.
 
    
 
- ## Contenidos. Breve introducción a las interacciones ecológicas
-Antes de hablar de competencia interespecífica, pongamos en contexto este concepto. 
+ ## Contenidos
+Este tema consta de tres secciones claramente diferenciadas. 
 
-La competencia interespecífica es uno de los muchos tipos de interacciones que ocurren en las comunidades ecológicas. A través de estas interacciones se produce la transferencia de materia y energía entre los distintos niveles en los que se organiza la vida en la Tierra. Esto último cobrará más sentido cuando estudiemos los ciclos biogeoquímicos. Las relaciones o interacciones son fundamentales porque su abundancia y configuración contribuye a explicar ciertas propiedades de los ecosistemas:
-
-+ Los sistemas con más interacciones son más estables. Es decir, se ven menos afectados por las condiciones ambientales externas. [Este](https://github.com/aprendiendo-cosas/Te_comp_inter_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_1.pdf) artículo describe muy bien esta afirmación. 
-+ También se ha observado que en las comunidades en las que hay más interacciones, hay más productividad. [Este](https://github.com/aprendiendo-cosas/Te_comp_inter_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_2.pdf) artículo lo resume bien. 
-+ Por último sabemos que el equilibrio en el tipo de interacciones (la llamada equitatividad de interacciones) genera más estabilidad en el ecosistema. De nuevo, [aquí](https://github.com/aprendiendo-cosas/Te_comp_inter_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_3.pdf) tienes un artículo que describe esta afirmación. 
-
-En las próximas sesiones analizaremos los distintos tipos de interacciones ecológicas que se han descrito. La siguiente tabla muestra dichas interacciones:
+En primer lugar hablaremos de los fundamentos teóricos de la depredación. Aprenderemos cómo se afectan mutuamente las poblaciones que interactúan de esta manera (depredando o siendo depredadas). A continuación analizaremos con cierto detalle el concepto de "cascada trófica", como ejemplo de la importancia que tiene la depredación en la estructura y funcionamiento de un ecosistema. Por último, describiremos alguna de las aplicaciones del concepto de depredación al manejo de recursos naturales. 
 
 
 
-![interacciones](https://github.com/aprendiendo-cosas/Te_comp_inter_ecologia_ccaa/raw/main/presentacion/images/tipos_interacciones.png)
+### Aspectos generales de la depredación
 
-
-
-## Competencia interespecífica 
-
-A lo largo de la sesión se describen los siguientes elementos, que se pueden observar con detalle en [este](https://github.com/aprendiendo-cosas/Te_comp_inter_ecologia_ccaa/raw/main/presentacion/competencia_interespecifica.xmind) mapa mental. Dicho mapa puede visualizarse de manera dinámica en [esta](https://aprendiendo-cosas.github.io/Te_comp_inter_ecologia_ccaa/presentacion/comp_inter.html) página. 
-
-+ La competencia interespecífica consiste en la interacción entre dos o más especies que usan los mismos tipos de recursos.
-+ Tipos de competencia:
-  + Interferencia.
-  + Explotación.
-+ Efectos de la competencia interespecífica a escala de individuo y de población.
-+ Modelización del proceso usando según Lotka y Volterra.
-+ Factores que limitan la competencia interespecífica en la naturaleza.
-
-
-A continuación puedes ver el vídeo de la sesión.
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EB8dz0eWA9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver aquí de manera dinámica. 
