@@ -6,7 +6,7 @@
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **Duración**: Aproximadamente 2 horas.
 
-![portada](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/1_generalidades_depredacion.html)
+![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/imagenes/portada.jpg)
 
 ## Objetivos 
 
