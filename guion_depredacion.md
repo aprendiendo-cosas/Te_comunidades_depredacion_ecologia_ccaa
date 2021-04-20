@@ -55,5 +55,13 @@ El fenómeno de cascada trófica es la constatación de la importancia que tiene
 
 ### Ejemplos de la aplicabilidad del concepto de depredación
 
-Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/3_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo aquí de forma dinámica. 
+Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/3_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/3_aspectos_aplicados_depredacion.html) de forma dinámica. 
+
+
+
+
+
+## Vídeo de la sesión
+
+
 
