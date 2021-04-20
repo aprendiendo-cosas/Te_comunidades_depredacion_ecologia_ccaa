@@ -20,6 +20,10 @@ En esta sesión abordaremos los elementos fundamentales para comprender el proce
 
  + Seguir consolidando el conocimiento adquirido sobre dinámica de poblaciones y sobre herramientas matemáticas para su simulación.
 
+ + Empezar a comprender la relación entre las interacciones interespecíficas y el flujo de materia y energía en el planeta Tierra.
+
+ + Conocer la importancia de la depredación en el ensamblaje de las comunidades ecológicas. 
+
    
 
  ## Contenidos
@@ -31,4 +35,25 @@ En primer lugar hablaremos de los fundamentos teóricos de la depredación. Apre
 
 ### Aspectos generales de la depredación
 
-Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver aquí de manera dinámica. 
+Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/1_generalidades_depredacion.html) de manera dinámica. En esta sección abordaremos las siguientes cuestiones principales:
+
++ Definición de depredación.
++ Tipos de depredadores.
++ Modelización matemática usando los trabajos de Lotka y Volterra.
++ Análisis del grado de cumplimiento de los modelos anteriores en la naturaleza.
++ Breve esbozo de la importancia evolutiva de la depredación.
+
+Como ves, el hilo argumental es muy parecido al que llevamos utilizando desde que empezamos a hablar de poblaciones.
+
+
+
+### Cascadas tróficas
+
+El fenómeno de cascada trófica es la constatación de la importancia que tienen los depredadores apicales sobre la estructura y funcionamiento de una comunidad ecológica e incluso sobre la geomorfología de un ecosistema. Se pueden definir como el conjunto de cambios que ocurren en un ecosistema cuando, por diversas razones, se elimina un depredador apical en la red trófica del sistema. En esta sección abordamos la importancia de este fenómeno usando ejemplos ocurridos en la realidad. Para ello usaremos [esta](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/2_cascadas_troficas.pptx) presentación como guión. 
+
+
+
+### Ejemplos de la aplicabilidad del concepto de depredación
+
+Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/3_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo aquí de forma dinámica. 
+
