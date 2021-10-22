@@ -6,7 +6,7 @@
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **Duración**: Aproximadamente 2 horas.
 
-![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/imagenes/portada.jpg)
+![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2020-2021/imagenes/portada.jpg)
 
 ## Objetivos 
 
@@ -35,7 +35,7 @@ En primer lugar hablaremos de los fundamentos teóricos de la depredación. Apre
 
 ### Aspectos generales de la depredación
 
-Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/1_generalidades_depredacion.html) de manera dinámica. En esta sección abordaremos las siguientes cuestiones principales:
+Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2020-2021/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/1_generalidades_depredacion.html) de manera dinámica. En esta sección abordaremos las siguientes cuestiones principales:
 
 + Definición de depredación.
 + Tipos de depredadores.
@@ -49,13 +49,13 @@ Como ves, el hilo argumental es muy parecido al que llevamos utilizando desde qu
 
 ### Cascadas tróficas
 
-El fenómeno de cascada trófica es la constatación de la importancia que tienen los depredadores apicales sobre la estructura y funcionamiento de una comunidad ecológica e incluso sobre la geomorfología de un ecosistema. Se pueden definir como el conjunto de cambios que ocurren en un ecosistema cuando, por diversas razones, se elimina un depredador apical en la red trófica del sistema. En esta sección abordamos la importancia de este fenómeno usando ejemplos ocurridos en la realidad. Para ello usaremos [esta](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/2_cascadas_troficas.pptx) presentación como guión. 
+El fenómeno de cascada trófica es la constatación de la importancia que tienen los depredadores apicales sobre la estructura y funcionamiento de una comunidad ecológica e incluso sobre la geomorfología de un ecosistema. Se pueden definir como el conjunto de cambios que ocurren en un ecosistema cuando, por diversas razones, se elimina un depredador apical en la red trófica del sistema. En esta sección abordamos la importancia de este fenómeno usando ejemplos ocurridos en la realidad. Para ello usaremos [esta](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2020-2021/presentacion/2_cascadas_troficas.pptx) presentación como guión. 
 
 
 
 ### Ejemplos de la aplicabilidad del concepto de depredación
 
-Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/3_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/3_aspectos_aplicados_depredacion.html) de forma dinámica. 
+Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2020-2021/presentacion/3_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https:/aprendiendo-cosas.github.io/Te_depredacion_ecologia_ccaa/presentacion/3_aspectos_aplicados_depredacion.html) de forma dinámica. 
 
 
 
