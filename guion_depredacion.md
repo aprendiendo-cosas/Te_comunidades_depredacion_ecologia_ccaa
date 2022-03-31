@@ -38,7 +38,7 @@ En las próximas sesiones analizaremos los distintos tipos de interacciones ecol
 
 
 
-![interacciones](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2020-2021/imagenes/tipos_interacciones.png)
+![interacciones](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/imagenes/tipos_interacciones.png)
 
 
 
