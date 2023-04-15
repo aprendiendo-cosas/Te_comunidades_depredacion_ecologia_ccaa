@@ -6,7 +6,7 @@
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **Duración**: Aproximadamente 2 horas.
 
-![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/imagenes/portada.jpg)
+![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/imagenes/portada.jpg)
 
 ## Objetivos 
 
@@ -30,15 +30,15 @@ Antes de hablar de la depredación, pongamos en contexto este concepto.
 
 La depredación es uno de los muchos tipos de interacciones que ocurren en las comunidades ecológicas. A través de estas interacciones se produce la transferencia de materia y energía entre los distintos niveles en los que se organiza la vida en la Tierra. Esta idea cobrará más sentido para vosotros cuando estudiemos los ciclos biogeoquímicos. Las relaciones o interacciones son fundamentales porque su abundancia y configuración contribuye a explicar ciertas propiedades de los ecosistemas:
 
-+ Los sistemas con más interacciones son más estables. Es decir, se ven menos afectados por las condiciones ambientales externas. [Este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_1.pdf) artículo describe muy bien esta afirmación. 
-+ También se ha observado que en las comunidades en las que hay más interacciones, hay más productividad (todavía no sabemos qué es la productividad, así que diremos que es la capacidad que tiene un sistema ecológico de generar biomasa) [Este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_2.pdf) artículo lo resume bien. 
-+ Por último sabemos que el equilibrio en el tipo de interacciones (la llamada equitatividad de interacciones) genera más estabilidad en el ecosistema. De nuevo, [aquí](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/biblio/interacciones_estabilidad_3.pdf) tienes un artículo que describe esta afirmación. 
++ Los sistemas con más interacciones son más estables. Es decir, se ven menos afectados por las condiciones ambientales externas. [Este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/biblio/interacciones_estabilidad_1.pdf) artículo describe muy bien esta afirmación. 
++ También se ha observado que en las comunidades en las que hay más interacciones, hay más productividad (todavía no sabemos qué es la productividad, así que diremos que es la capacidad que tiene un sistema ecológico de generar biomasa) [Este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/biblio/interacciones_estabilidad_2.pdf) artículo lo resume bien. 
++ Por último sabemos que el equilibrio en el tipo de interacciones (la llamada equitatividad de interacciones) genera más estabilidad en el ecosistema. De nuevo, [aquí](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/biblio/interacciones_estabilidad_3.pdf) tienes un artículo que describe esta afirmación. 
 
 En las próximas sesiones analizaremos los distintos tipos de interacciones ecológicas que se han descrito. La siguiente tabla muestra dichas interacciones:
 
 
 
-![interacciones](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/imagenes/tipos_interacciones.png)
+![interacciones](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/imagenes/tipos_interacciones.png)
 
 
 
@@ -52,7 +52,7 @@ Este tema consta de dos secciones claramente diferenciadas.
 
 ### Aspectos generales de la depredación
 
-Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver [aquí](https://rawcdn.githack.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/main/presentacion/1_generalidades_depredacion.html) de manera dinámica. En esta sección abordaremos las siguientes cuestiones principales:
+Esta primera parte estará guiada por [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/presentacion/1_generalidades_depredacion.xmind) mapa mental, que también puedes ver [aquí](https://rawcdn.githack.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/2022-2023/presentacion/1_generalidades_depredacion.html) de manera dinámica. En esta sección abordaremos las siguientes cuestiones principales:
 
 + Definición de depredación.
 + Tipos de depredadores.
@@ -65,7 +65,7 @@ Como ves, el hilo argumental es muy parecido al que llevamos utilizando desde qu
 
 ### Ejemplos de la aplicabilidad del concepto de depredación
 
-Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/main/presentacion/2_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https://rawcdn.githack.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/main/presentacion/2_aspectos_aplicados_depredacion.html) de forma dinámica. 
+Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2022-2023/presentacion/2_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https://rawcdn.githack.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/2022-2023/presentacion/2_aspectos_aplicados_depredacion.html) de forma dinámica. 
 
 
 
