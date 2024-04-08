@@ -1,7 +1,7 @@
 # Guión de la sesión denominada "Depredación"
 
 
-> + **_Versión_**: 2022-2023
+> + **_Versión_**: 2023-2024
 > + **_Asignatura (grado)_**: Ecología (CCAA)
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **Duración**: Aproximadamente 2 horas.
@@ -72,13 +72,4 @@ Esta última sección recoge una colección de ejemplos en los que se ponen en p
 ## Ideas para activar el [preguntismo](https://aprendientesdotorg.wordpress.com/2015/10/15/activar-el-preguntismo/)
 
 Se ha comprobado que una buena forma de fijar conocimientos y de identificar carencias en el aprendizaje es tratar de formular preguntas sobre el tema estudiado. Así que, en algunas sesiones abriré un espacio para que inventes preguntas. La idea es que formules una pregunta sobre temas que te interesen relacionados con lo que hemos visto en clase. O cuestiones que conecten con la actualidad o que estén relacionadas con otras disciplinas. También sirven preguntas locas que no tienen por qué tener respuesta. Sube tu pregunta a [este](https://docs.google.com/forms/d/e/1FAIpQLScs9QiBABvvDUt1La1wNdGmao9PplCMSReVgV8wBIX5Q3YTZQ/viewform?usp=sf_link) formulario en los últimos 5' de clase o más tarde, si lo prefieres. Revisaremos preguntas y sus posibles respuestas en la siguiente sesión.
-
-Antes de abordar las preguntas escritas en el formulario, hablaremos de una propuesta por Hugo: ¿qué efecto podría tener el canibalismo sobre las relaciones depredador-presa? Cuando hizo la pregunta en clase contesté que el canibalismo no es demasiado importante en términos generales y que seguramente tendría poco impacto en la dinámica de los organismos afectados. Estaba equivocado. Tras leer algunos artículos, ahí va una respuesta más correcta:
-
-+ El canibalismo es muy frecuente en sistemas acuáticos y terrestres. La mayoría de los depredadores tienen a veces comportamientos caníbales. 
-+ Sus implicaciones en la dinámica de los depredadores y de las presas no son bien conocidos. Pueden variar dependiendo de si el canibalismo ocurre en las presas o en los depredadores. 
-+ Los efectos del canibalismo pueden ser de distintos tipos:
-  + Efecto estabilizador de la dinámica depredador-presa ([Kohlmeier, C. & Ebenhöh, W; 1995](https://www.sciencedirect.com/science/article/pii/S0092824005817756)). En mucha ocasiones la existencia de canibalismo puede hacer que las poblaciones de depreador y presa sean más estables en el tiempo. Algunos depredadores pueden comer sus propios huevos o descendientes y esto les ayuda a sobrevivir cuando las condiciones ambientales no son las adecuadas. Esto suele ocurrir cuando los adultos y los juveniles tienen formas de alimentación diferentes. Es decir, depredan presas diferentes. 
-  + Efecto desestabilizador que provoca el caos y la extinción de las presas y depredadores ([Claessen, D., et al. 2004](https://royalsocietypublishing.org/doi/10.1098/rspb.2003.2555)).
-  + También es posible que se generen estados biestables en los que hay periodos de estabilidad seguidos de otros de inestabilidad ([Rudolf, V. 2008](https://doi.org/10.1890/08-0104.1))
 
