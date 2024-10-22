@@ -8,6 +8,10 @@
 
 ![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2023_2024/imagenes/portada.jpg)
 
+INCORPORAR BREVE DEFINICIÓN DE QUÉ ES UNA COMUNIDAD PORQUE ESTE AÑO (24-25) HABLAMOS DE INTERACCIONES ANTES DE HABLAR DE DIVERSIDAD. PENSAR TAMBIÉN LAS IMPLICACIONES QUE TIENE ESTO SOBRE LA DINÁMICA DE LAS BOLAS
+
+
+
 ## Objetivos 
 
 En esta sesión abordaremos los elementos fundamentales para comprender el proceso de la depredación. Los objetivos más concretos son:
@@ -66,5 +70,4 @@ Como ves, el hilo argumental es muy parecido al que llevamos utilizando desde qu
 ### Ejemplos de la aplicabilidad del concepto de depredación
 
 Esta última sección recoge una colección de ejemplos en los que se ponen en práctica los conceptos teóricos vistos más arriba para abordar un problema de conservación concreto. De manera más específica analizaremos cómo considerar la depredación es importante para manejar especies en peligro de extinción, en la optimización del número de presas en un escenario de caza y como control biológico de plagas. Para todo ello usaremos [este](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2023_2024/presentacion/2_aspectos_aplicados_depredacion.xmind) mapa mental como guía. También puedes verlo [aquí](https://rawcdn.githack.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/2023_2024/presentacion/2_aspectos_aplicados_depredacion.html) de forma dinámica. 
-
 
