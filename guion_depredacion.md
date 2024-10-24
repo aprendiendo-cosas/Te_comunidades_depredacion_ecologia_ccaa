@@ -1,14 +1,12 @@
 # Guión de la sesión denominada "Depredación"
 
 
-> + **_Versión_**: 2023-2024
+> + **_Versión_**: 2024-2025
 > + **_Asignatura (grado)_**: Ecología (CCAA)
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **Duración**: Aproximadamente 2 horas.
 
 ![portada](https://github.com/aprendiendo-cosas/Te_depredacion_ecologia_ccaa/raw/2023_2024/imagenes/portada.jpg)
-
-INCORPORAR BREVE DEFINICIÓN DE QUÉ ES UNA COMUNIDAD PORQUE ESTE AÑO (24-25) HABLAMOS DE INTERACCIONES ANTES DE HABLAR DE DIVERSIDAD. PENSAR TAMBIÉN LAS IMPLICACIONES QUE TIENE ESTO SOBRE LA DINÁMICA DE LAS BOLAS
 
 
 
