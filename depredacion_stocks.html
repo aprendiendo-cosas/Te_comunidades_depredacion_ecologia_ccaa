@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presas y depredadores como depósitos</title>
+<style>
+:root{
+  --paper:#F7F8F4; --panel:#FFFFFF; --ink:#1E2A24; --muted:#5B6660; --faint:#8C958F;
+  --line:#D9DED6; --grid:#E8ECE6; --pipe:#E3E7E0;
+  --prey:#1F6F8B; --prey-soft:#BFE0EC;
+  --pred:#B8461B; --pred-soft:#F2CDB9;
+  --comp:#6B5B95; --ref:#8C958F; --focus:#1F6F8B;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#141A17; --panel:#1C2420; --ink:#E7ECE8; --muted:#A9B3AD; --faint:#7A847E;
+    --line:#2E3832; --grid:#26302B; --pipe:#2A332E;
+    --prey:#5DB4D3; --prey-soft:#1D4552;
+    --pred:#EE8A5E; --pred-soft:#4D2A1B;
+    --comp:#A796D6; --ref:#7A847E; --focus:#5DB4D3;
+    color-scheme: dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.55}
+header,main{max-width:1320px;margin:0 auto;padding-left:24px;padding-right:24px}
+header{padding-top:28px}
+h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600;font-size:2rem;margin:0 0 6px;letter-spacing:-0.01em}
+.lead{max-width:80ch;margin:0 0 14px;color:var(--muted)}
+.eq{font-family:"Cambria Math","Iowan Old Style",Georgia,serif;font-size:1.1rem;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 14px;display:inline-block;margin:0 0 18px}
+main{padding-bottom:48px}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:26px;align-items:start}
+@media (max-width:960px){.layout{grid-template-columns:minmax(0,1fr)}}
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;position:sticky;top:12px}
+@media (max-width:960px){.controls{position:static}}
+.controls h3{font-size:.95rem;font-weight:600;margin:14px 0 6px;color:var(--muted)}
+.controls h3:first-child{margin-top:0}
+.ctl{margin:0 0 11px}
+.ctl label{display:flex;justify-content:space-between;font-size:.92rem;gap:8px}
+.ctl label output{font-variant-numeric:tabular-nums;font-weight:600}
+input[type=range]{width:100%;accent-color:var(--ink)}
+.check{display:flex;gap:8px;align-items:flex-start;font-size:.92rem;margin:4px 0 12px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+button.b{font:inherit;font-size:.92rem;padding:6px 14px;border-radius:6px;border:1px solid var(--muted);background:var(--panel);color:var(--ink);cursor:pointer}
+button.b:hover{background:var(--grid)}
+button.b:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.stack{display:grid;gap:22px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+@media (max-width:1100px){.two{grid-template-columns:minmax(0,1fr)}}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px 10px}
+figcaption{font-size:.95rem;font-weight:600;margin:0 0 6px}
+canvas{width:100%;height:290px;display:block}
+canvas.short{height:220px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.83rem;color:var(--muted);margin:6px 0 2px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:3px solid}
+.sw.dash{border-top-style:dashed}
+.sw.dot{border-top-style:dotted}
+.note{font-size:.88rem;color:var(--muted);margin:8px 0 0;max-width:80ch}
+.phase{border-radius:8px;padding:12px 14px;margin-top:10px;background:var(--grid);font-size:.95rem;min-height:4.8em}
+.phase b{display:block;margin-bottom:2px}
+#sf{width:100%;height:auto;display:block}
+#sf text{font-family:inherit}
+.pipe{fill:none;stroke:var(--pipe);stroke-linecap:round}
+.flow{fill:none;stroke-linecap:butt;stroke-dasharray:7 9}
+.lbl{font-size:17px;fill:var(--ink)}
+.lbl.m{fill:var(--muted);font-size:15px}
+.val{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.info{fill:none;stroke-width:1.8;stroke-dasharray:5 4}
+.key{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.83rem;color:var(--muted);margin:8px 0 0}
+.key span{display:inline-flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Presas y depredadores como depósitos</h1>
+  <p class="lead">Cada población es un depósito: su nivel solo cambia por lo que entra y lo que sale. En el modelo de Lotka-Volterra, la tubería que vacía el depósito de presas es la misma que llena el de depredadores, y la apertura de su válvula depende del nivel de los dos depósitos. Ahí están las dos retroalimentaciones.</p>
+  <div class="eq">dN/dt = r·N <span id="eqK">− r·N²/K</span> − c·N·P &nbsp;&nbsp;&nbsp; dP/dt = b·c·N·P − d·P</div>
+</header>
+
+<main>
+<div class="layout">
+  <div class="controls">
+    <h3>Animación</h3>
+    <div class="btns"><button class="b" id="x_play">Reproducir</button><button class="b" id="x_reset">Reiniciar</button></div>
+    <div class="ctl"><label for="x_time">Tiempo <output id="x_time_o"></output></label><input type="range" id="x_time" min="0" max="1000" step="1" value="0"></div>
+    <div class="ctl"><label for="x_spd">Velocidad <output id="x_spd_o"></output></label><input type="range" id="x_spd" min="1" max="10" step="1" value="2"></div>
+    <h3>Presas</h3>
+    <label class="check"><input type="checkbox" id="x_log"> <span>Incluir competencia intraespecífica (logística)</span></label>
+    <div class="ctl"><label for="x_r">Tasa intrínseca, r <output id="x_r_o"></output></label><input type="range" id="x_r" min="0.2" max="2" step="0.1" value="1"></div>
+    <div class="ctl" id="x_k_box"><label for="x_k">Capacidad de carga, K <output id="x_k_o"></output></label><input type="range" id="x_k" min="100" max="2000" step="50" value="500"></div>
+    <div class="ctl"><label for="x_n0">Presas iniciales, N₀ <output id="x_n0_o"></output></label><input type="range" id="x_n0" min="5" max="200" step="1" value="40"></div>
+    <h3>Depredadores</h3>
+    <div class="ctl"><label for="x_c">Eficiencia de captura, c <output id="x_c_o"></output></label><input type="range" id="x_c" min="0.005" max="0.05" step="0.001" value="0.02"></div>
+    <div class="ctl"><label for="x_b">Eficiencia de conversión, b <output id="x_b_o"></output></label><input type="range" id="x_b" min="0.1" max="1" step="0.05" value="0.5"></div>
+    <div class="ctl"><label for="x_d">Mortalidad, d <output id="x_d_o"></output></label><input type="range" id="x_d" min="0.1" max="1.5" step="0.05" value="0.5"></div>
+    <div class="ctl"><label for="x_p0">Depredadores iniciales, P₀ <output id="x_p0_o"></output></label><input type="range" id="x_p0" min="1" max="150" step="1" value="20"></div>
+  </div>
+
+  <div class="stack">
+    <figure>
+      <figcaption>Depósitos y flujos</figcaption>
+      <svg id="sf" viewBox="0 30 980 420" role="img" aria-label="Diagrama de depósitos: presas y depredadores con sus entradas y salidas">
+        <defs>
+          <marker id="mP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--prey)"/></marker>
+          <marker id="mD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pred)"/></marker>
+          <marker id="mG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--faint)"/></marker>
+          <symbol id="cloud" viewBox="0 0 60 36"><path d="M14 32 C2 32 2 18 12 17 C11 6 26 3 30 11 C35 2 50 5 48 16 C59 16 59 32 47 32 Z" fill="var(--panel)" stroke="var(--faint)" stroke-width="1.6"/></symbol>
+          <clipPath id="clipN"><rect x="230" y="110" width="150" height="230" rx="4"/></clipPath>
+          <clipPath id="clipP"><rect x="650" y="110" width="150" height="230" rx="4"/></clipPath>
+        </defs>
+
+        <!-- pipes (background) -->
+        <path class="pipe" d="M 82 160 L 230 160" stroke-width="18"/>
+        <path class="pipe" d="M 380 290 L 650 290" stroke-width="18"/>
+        <path class="pipe" d="M 570 290 L 570 392" stroke-width="18"/>
+        <path class="pipe" d="M 800 290 L 912 290" stroke-width="18"/>
+        <path class="pipe" id="p_comp" d="M 305 340 L 305 398" stroke-width="18"/>
+
+        <!-- moving flows -->
+        <path class="flow" id="fl_birth" d="M 82 160 L 230 160" stroke="var(--prey)"/>
+        <path class="flow" id="fl_pred" d="M 380 290 L 570 290" stroke="var(--pred)"/>
+        <path class="flow" id="fl_conv" d="M 570 290 L 650 290" stroke="var(--pred)"/>
+        <path class="flow" id="fl_loss" d="M 570 290 L 570 392" stroke="var(--faint)"/>
+        <path class="flow" id="fl_mort" d="M 800 290 L 912 290" stroke="var(--pred)"/>
+        <path class="flow" id="fl_comp" d="M 305 340 L 305 398" stroke="var(--comp)"/>
+
+        <!-- clouds -->
+        <use href="#cloud" x="22" y="142" width="60" height="36"/>
+        <use href="#cloud" x="540" y="390" width="60" height="36"/>
+        <use href="#cloud" x="908" y="272" width="60" height="36"/>
+        <g id="g_comp_cloud"><use href="#cloud" x="275" y="396" width="60" height="36"/></g>
+
+        <!-- tanks -->
+        <rect x="230" y="110" width="150" height="230" rx="4" fill="var(--panel)"/>
+        <g clip-path="url(#clipN)"><rect id="lvN" x="230" y="340" width="150" height="0" fill="var(--prey-soft)"/><line id="lvNtop" x1="230" x2="380" y1="340" y2="340" stroke="var(--prey)" stroke-width="2.5"/></g>
+        <line id="eqN" x1="230" x2="380" y1="200" y2="200" stroke="var(--prey)" stroke-width="1.4" stroke-dasharray="3 4"/>
+        <text id="eqNt" x="236" y="204" class="lbl m">N*</text>
+        <rect x="230" y="110" width="150" height="230" rx="4" fill="none" stroke="var(--prey)" stroke-width="2.5"/>
+        <text x="305" y="98" text-anchor="middle" class="lbl" font-weight="600" font-size="19">Presas (N)</text>
+        <text id="tN" x="305" y="238" text-anchor="middle" font-size="34" font-weight="600" fill="var(--ink)">0</text>
+
+        <rect x="650" y="110" width="150" height="230" rx="4" fill="var(--panel)"/>
+        <g clip-path="url(#clipP)"><rect id="lvP" x="650" y="340" width="150" height="0" fill="var(--pred-soft)"/><line id="lvPtop" x1="650" x2="800" y1="340" y2="340" stroke="var(--pred)" stroke-width="2.5"/></g>
+        <line id="eqP" x1="650" x2="800" y1="200" y2="200" stroke="var(--pred)" stroke-width="1.4" stroke-dasharray="3 4"/>
+        <text id="eqPt" x="656" y="204" class="lbl m">P*</text>
+        <rect x="650" y="110" width="150" height="230" rx="4" fill="none" stroke="var(--pred)" stroke-width="2.5"/>
+        <text x="725" y="98" text-anchor="middle" class="lbl" font-weight="600" font-size="19">Depredadores (P)</text>
+        <text id="tP" x="725" y="238" text-anchor="middle" font-size="34" font-weight="600" fill="var(--ink)">0</text>
+
+        <!-- valves -->
+        <g fill="var(--panel)" stroke="var(--ink)" stroke-width="1.6">
+          <path d="M 146 148 L 146 172 L 170 148 L 170 172 Z"/>
+          <path d="M 463 278 L 463 302 L 487 278 L 487 302 Z"/>
+          <path d="M 844 278 L 844 302 L 868 278 L 868 302 Z"/>
+          <g id="g_comp_valve"><path d="M 293 357 L 317 357 L 293 381 L 317 381 Z"/></g>
+        </g>
+
+        <!-- information links -->
+        <path class="info" d="M 240 180 C 200 230, 160 220, 158 176" stroke="var(--faint)" marker-end="url(#mG)"/>
+        <path class="info" d="M 790 320 C 830 350, 856 340, 856 306" stroke="var(--faint)" marker-end="url(#mG)"/>
+        <path class="info" id="linkN" d="M 380 150 C 440 150, 470 200, 472 272" stroke="var(--prey)" marker-end="url(#mP)"/>
+        <path class="info" id="linkP" d="M 650 150 C 560 150, 485 200, 478 272" stroke="var(--pred)" marker-end="url(#mD)"/>
+
+        <!-- link labels -->
+        <text x="428" y="196" class="lbl" style="font-size:34px;fill:var(--prey)" font-weight="700">+</text>
+        <text x="528" y="196" class="lbl" style="font-size:34px;fill:var(--pred)" font-weight="700">−</text>
+        <text x="475" y="58" text-anchor="middle" class="lbl m">La válvula de capturas se abre más</text>
+        <text x="475" y="77" text-anchor="middle" class="lbl m">cuantas más presas y más depredadores hay</text>
+
+        <!-- flow labels -->
+        <text x="156" y="116" text-anchor="middle" class="lbl">Nacimientos</text>
+        <text x="156" y="137" text-anchor="middle" class="lbl m">r·N</text>
+        <text id="v_birth" x="118" y="200" text-anchor="middle" class="val" fill="var(--prey)"></text>
+
+        <text x="460" y="330" text-anchor="middle" class="lbl">Capturas</text>
+        <text x="460" y="350" text-anchor="middle" class="lbl m">c·N·P</text>
+        <text id="v_pred" x="460" y="372" text-anchor="middle" class="val" fill="var(--pred)"></text>
+
+        <text x="612" y="254" text-anchor="middle" class="lbl m">b·c·N·P</text>
+        <text id="v_conv" x="612" y="274" text-anchor="middle" class="val" fill="var(--pred)"></text>
+
+        <text x="592" y="368" class="lbl m">No convertido</text>
+        <text x="592" y="388" class="lbl m">(1 − b)·c·N·P</text>
+        <text id="v_loss" x="592" y="410" class="val" fill="var(--muted)"></text>
+
+        <text x="856" y="246" text-anchor="middle" class="lbl">Muertes</text>
+        <text x="856" y="266" text-anchor="middle" class="lbl m">d·P</text>
+        <text id="v_mort" x="856" y="328" text-anchor="middle" class="val" fill="var(--pred)"></text>
+
+        <g id="g_comp_lbl">
+          <text x="328" y="364" class="lbl">Competencia</text>
+          <text x="328" y="384" class="lbl m">r·N²/K</text>
+          <text id="v_comp" x="328" y="406" class="val" fill="var(--comp)"></text>
+        </g>
+      </svg>
+      <div class="key">
+        <span><i class="sw" style="border-color:var(--ink);width:14px"></i>Tubería: flujo de individuos (su grosor y velocidad indican cuántos por unidad de tiempo)</span>
+        <span><i class="sw dash" style="border-color:var(--faint);width:18px;border-top-width:2px"></i>Flecha discontinua: el nivel de un depósito controla una válvula</span>
+        <span><i class="sw dot" style="border-color:var(--ink);width:18px;border-top-width:2px"></i>Línea punteada en el depósito: nivel de equilibrio</span>
+      </div>
+      <div class="phase" id="x_phase" aria-live="polite"></div>
+    </figure>
+
+    <div class="two">
+      <figure><figcaption>Niveles de los depósitos a lo largo del tiempo</figcaption><canvas id="x_c1" role="img" aria-label="Ciclos de presas y depredadores"></canvas>
+        <div class="legend"><span><i class="sw" style="border-color:var(--prey)"></i>Presas (N)</span><span><i class="sw dash" style="border-color:var(--pred)"></i>Depredadores (P)</span></div></figure>
+      <figure><figcaption>Plano de fases: depredadores frente a presas</figcaption><canvas id="x_c2" role="img" aria-label="Trayectoria en el plano de fases con isoclinas"></canvas>
+        <div class="legend"><span><i class="sw dot" style="border-color:var(--prey)"></i>Isoclina de presas (dN/dt = 0)</span><span><i class="sw dot" style="border-color:var(--pred)"></i>Isoclina de depredadores (dP/dt = 0)</span></div></figure>
+    </div>
+
+    <div class="two">
+      <figure><figcaption>Entradas y salidas del depósito de presas</figcaption><canvas id="x_c5" class="short" role="img" aria-label="Flujos de entrada y salida de presas en el tiempo"></canvas>
+        <div class="legend"><span><i class="sw" style="border-color:var(--prey)"></i>Entrada: nacimientos r·N</span><span><i class="sw dash" style="border-color:var(--pred)"></i>Salida: capturas c·N·P</span><span id="lg_comp"><i class="sw dot" style="border-color:var(--comp)"></i>Salida: competencia r·N²/K</span></div>
+        <p class="note">El depósito sube cuando la línea de entrada está por encima de la suma de salidas, y baja en caso contrario.</p></figure>
+      <figure><figcaption>Entradas y salidas del depósito de depredadores</figcaption><canvas id="x_c6" class="short" role="img" aria-label="Flujos de entrada y salida de depredadores en el tiempo"></canvas>
+        <div class="legend"><span><i class="sw" style="border-color:var(--pred)"></i>Entrada: nacimientos b·c·N·P</span><span><i class="sw dash" style="border-color:var(--faint)"></i>Salida: muertes d·P</span></div>
+        <p class="note">La entrada de depredadores es una fracción b de la salida de presas: es literalmente la misma tubería.</p></figure>
+    </div>
+
+    <div class="two">
+      <figure><figcaption>Retroalimentación positiva: efecto de N sobre P</figcaption><canvas id="x_c3" class="short" role="img" aria-label="Tasa per cápita de los depredadores frente al número de presas"></canvas>
+        <p class="note">Tasa de crecimiento por depredador, b·c·N − d, frente al número de presas. Pendiente positiva: cuantas más presas, más se llena el depósito de depredadores. Por encima de N* = d/(bc) los depredadores aumentan.</p></figure>
+      <figure><figcaption>Retroalimentación negativa: efecto de P sobre N</figcaption><canvas id="x_c4" class="short" role="img" aria-label="Tasa per cápita de las presas frente al número de depredadores"></canvas>
+        <p class="note">Tasa de crecimiento por presa, r(1 − N/K) − c·P, frente al número de depredadores. Pendiente negativa: cuantos más depredadores, más se vacía el depósito de presas. Por debajo de cero, las presas disminuyen.</p></figure>
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let C={};
+function readColors(){C={ink:cssv('--ink'),muted:cssv('--muted'),faint:cssv('--faint'),line:cssv('--line'),grid:cssv('--grid'),prey:cssv('--prey'),pred:cssv('--pred'),comp:cssv('--comp'),panel:cssv('--panel')};}
+readColors();
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nf=(v,d)=>{ if(!isFinite(v)) return '—'; const a=Math.abs(v); if(d===undefined) d=a>=100?0:a>=10?1:2; return v.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:d}); };
+
+/* ---------- plotting ---------- */
+function niceStep(range,n){const raw=range/n,p=Math.pow(10,Math.floor(Math.log10(raw))),f=raw/p;return (f<1.5?1:f<3?2:f<7?5:10)*p;}
+function niceMax(v){if(!(v>0))return 1;const s=niceStep(v,5);return Math.ceil(v*1.05/s)*s;}
+function setup(cv){const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}
+  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);return {ctx,w,h};}
+function frame(cv,o){
+  const {ctx,w,h}=setup(cv); const m={l:58,r:14,t:10,b:40}; const pw=w-m.l-m.r, ph=h-m.t-m.b;
+  const X=v=>m.l+(v-o.xmin)/(o.xmax-o.xmin)*pw, Y=v=>m.t+ph-(v-o.ymin)/(o.ymax-o.ymin)*ph;
+  ctx.font='12px '+getComputedStyle(document.body).fontFamily; ctx.lineWidth=1;
+  const xs=niceStep(o.xmax-o.xmin,Math.max(3,Math.floor(pw/80))), ys=niceStep(o.ymax-o.ymin,Math.max(3,Math.floor(ph/45)));
+  ctx.strokeStyle=C.grid; ctx.fillStyle=C.faint; ctx.textAlign='right'; ctx.textBaseline='middle';
+  for(let v=Math.ceil(o.ymin/ys)*ys; v<=o.ymax+1e-9; v+=ys){const y=Y(v);ctx.beginPath();ctx.moveTo(m.l,y);ctx.lineTo(m.l+pw,y);ctx.stroke();ctx.fillText(nf(Math.abs(v)<1e-9?0:v,ys<1?(ys<0.1?2:1):0),m.l-6,y);}
+  ctx.textAlign='center'; ctx.textBaseline='top';
+  for(let v=Math.ceil(o.xmin/xs)*xs; v<=o.xmax+1e-9; v+=xs){ctx.fillText(nf(Math.abs(v)<1e-9?0:v,xs<1?(xs<0.1?3:2):0),X(v),m.t+ph+6);}
+  ctx.strokeStyle=C.line; ctx.beginPath(); ctx.moveTo(m.l,m.t); ctx.lineTo(m.l,m.t+ph); ctx.lineTo(m.l+pw,m.t+ph); ctx.stroke();
+  if(o.ymin<0&&o.ymax>0){ctx.strokeStyle=C.muted;ctx.beginPath();ctx.moveTo(m.l,Y(0));ctx.lineTo(m.l+pw,Y(0));ctx.stroke();}
+  ctx.fillStyle=C.muted;
+  if(o.xlabel){ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText(o.xlabel,m.l+pw/2,h-2);}
+  if(o.ylabel){ctx.save();ctx.translate(13,m.t+ph/2);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(o.ylabel,0,0);ctx.restore();}
+  ctx.save(); ctx.beginPath(); ctx.rect(m.l,m.t-1,pw,ph+2); ctx.clip();
+  return {ctx,X,Y,m,pw,ph,
+    line(xs,ys,col,opt={}){ctx.save();ctx.strokeStyle=col;ctx.lineWidth=opt.w||2.2;ctx.lineJoin='round';ctx.lineCap='round';ctx.setLineDash(opt.dash||[]);ctx.globalAlpha=opt.a||1;ctx.beginPath();
+      let s=false;for(let i=0;i<xs.length;i++){const y=ys[i];if(!isFinite(y)){s=false;continue;}const py=Math.max(-1e4,Math.min(1e4,Y(y)));if(!s){ctx.moveTo(X(xs[i]),py);s=true;}else ctx.lineTo(X(xs[i]),py);}ctx.stroke();ctx.restore();},
+    hline(v,col,dash,label){ctx.save();ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.setLineDash(dash||[2,4]);ctx.beginPath();ctx.moveTo(m.l,Y(v));ctx.lineTo(m.l+pw,Y(v));ctx.stroke();if(label){ctx.fillStyle=col;ctx.textAlign='right';ctx.textBaseline='bottom';ctx.fillText(label,m.l+pw-4,Y(v)-3);}ctx.restore();},
+    vline(v,col,dash,label){ctx.save();ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.setLineDash(dash||[2,4]);ctx.beginPath();ctx.moveTo(X(v),m.t);ctx.lineTo(X(v),m.t+ph);ctx.stroke();if(label){ctx.fillStyle=col;ctx.textAlign='left';ctx.textBaseline='top';ctx.fillText(label,X(v)+4,m.t+2);}ctx.restore();},
+    dot(x,y,col,r){ctx.save();ctx.fillStyle=col;ctx.strokeStyle=C.panel;ctx.lineWidth=2;ctx.beginPath();ctx.arc(X(x),Y(y),r||5.5,0,7);ctx.fill();ctx.stroke();ctx.restore();},
+    text(x,y,s,col,al,bs){ctx.save();ctx.fillStyle=col;ctx.textAlign=al||'left';ctx.textBaseline=bs||'bottom';ctx.fillText(s,X(x),Y(y));ctx.restore();},
+    done(){ctx.restore();}};
+}
+function rk4(f,y0,T,dt,store){
+  let y=y0.slice(),t=0;const ts=[0],ys=[y.slice()];const n=Math.round(T/dt);
+  for(let i=1;i<=n;i++){
+    const k1=f(y),k2=f(y.map((v,j)=>v+dt*k1[j]/2)),k3=f(y.map((v,j)=>v+dt*k2[j]/2)),k4=f(y.map((v,j)=>v+dt*k3[j]));
+    y=y.map((v,j)=>Math.max(0,v+dt*(k1[j]+2*k2[j]+2*k3[j]+k4[j])/6)); t=i*dt;
+    if(i%store===0){ts.push(t);ys.push(y.slice());}
+  }
+  return {ts,ys};
+}
+const val=id=>parseFloat($(id).value);
+function bind(ids,fmt,fn){ids.forEach(id=>{const el=$(id),out=$(id+'_o');const upd=()=>{if(out)out.textContent=(fmt[id]||(v=>nf(v)))(parseFloat(el.value));};upd();el.addEventListener('input',()=>{upd();fn();});});}
+
+/* ---------- model ---------- */
+let S={}, idx=0, playing=false, raf=null;
+function simulate(){
+  const logi=$('x_log').checked;
+  const r=val('x_r'),K=logi?val('x_k'):Infinity,c=val('x_c'),b=val('x_b'),d=val('x_d'),N0=val('x_n0'),P0=val('x_p0');
+  const f=y=>[r*y[0]*(1-y[0]/K)-c*y[0]*y[1], b*c*y[0]*y[1]-d*y[1]];
+  const s=rk4(f,[N0,P0],100,0.01,10);
+  const N=s.ys.map(y=>y[0]),P=s.ys.map(y=>y[1]);
+  const birth=N.map(n=>r*n), comp=N.map(n=>logi?r*n*n/K:0), pred=N.map((n,i)=>c*n*P[i]), conv=pred.map(v=>b*v), mort=P.map(p=>d*p);
+  S={r,K,c,b,d,logi,ts:s.ts,N,P,birth,comp,pred,conv,mort};
+  S.Ns=d/(b*c); S.Ps=logi?(r/c)*(1-S.Ns/K):r/c;
+  S.Nmax=niceMax(Math.max(...N,S.Ns)); S.Pmax=niceMax(Math.max(...P,Math.max(S.Ps,0)));
+  S.Fmax=Math.max(...birth,...pred,...mort,...comp,1e-9);
+  $('x_time').max=s.ts.length-1; idx=Math.min(idx,s.ts.length-1);
+}
+
+/* ---------- stock-flow diagram ---------- */
+const TOP=110, H=230, BOT=340;
+const flows=['birth','pred','conv','loss','mort','comp'];
+let offs={birth:0,pred:0,conv:0,loss:0,mort:0,comp:0}, cur={};
+function setLevel(rectId,lineId,v,max){
+  const h=Math.max(0,Math.min(H,H*v/max)), y=BOT-h;
+  $(rectId).setAttribute('y',y); $(rectId).setAttribute('height',h);
+  $(lineId).setAttribute('y1',y); $(lineId).setAttribute('y2',y);
+}
+function setEq(lineId,txtId,v,max){
+  const show=v>0&&v<max; const y=BOT-H*v/max;
+  $(lineId).style.display=show?'':'none'; $(txtId).style.display=show?'':'none';
+  if(show){$(lineId).setAttribute('y1',y);$(lineId).setAttribute('y2',y);$(txtId).setAttribute('y',y-4);}
+}
+function drawStocks(){
+  const i=idx, n=S.N[i], p=S.P[i];
+  setLevel('lvN','lvNtop',n,S.Nmax); setLevel('lvP','lvPtop',p,S.Pmax);
+  setEq('eqN','eqNt',S.Ns,S.Nmax); setEq('eqP','eqPt',S.Ps,S.Pmax);
+  $('tN').textContent=nf(n,0); $('tP').textContent=nf(p,0);
+  cur={birth:S.birth[i],pred:S.pred[i],conv:S.conv[i],loss:S.pred[i]-S.conv[i],mort:S.mort[i],comp:S.comp[i]};
+  flows.forEach(k=>{
+    const el=$('fl_'+k), f=cur[k], w=f/S.Fmax;
+    el.setAttribute('stroke-width',(f<1e-6?0:2+12*Math.sqrt(Math.min(1,w))).toFixed(1));
+    const t=$('v_'+k); if(t) t.textContent=nf(f,1)+' /t';
+  });
+  ['g_comp_cloud','g_comp_valve','g_comp_lbl','p_comp','fl_comp'].forEach(id=>$(id).style.display=S.logi?'':'none');
+  $('eqK').style.display=S.logi?'':'none'; $('lg_comp').style.display=S.logi?'':'none';
+  const wN=1.2+3.5*Math.min(1,n/S.Nmax), wP=1.2+3.5*Math.min(1,p/S.Pmax);
+  $('linkN').setAttribute('stroke-width',wN.toFixed(1)); $('linkP').setAttribute('stroke-width',wP.toFixed(1));
+}
+let lastT=null;
+function animateFlows(ts){
+  if(lastT!==null && !reduced){
+    const dt=Math.min(0.1,(ts-lastT)/1000);
+    flows.forEach(k=>{ const f=cur[k]||0; if(f<1e-6) return; offs[k]-=dt*(15+110*Math.min(1,f/S.Fmax)); $('fl_'+k).setAttribute('stroke-dashoffset',offs[k].toFixed(1)); });
+  }
+  lastT=ts; requestAnimationFrame(animateFlows);
+}
+
+/* ---------- text ---------- */
+function phaseText(dN,dP){
+  if(dN>=0&&dP>=0) return ['Ambos depósitos se llenan','El depósito de depredadores está bajo, así que la válvula de capturas apenas se abre y las presas entran más deprisa de lo que salen. Al mismo tiempo, como hay muchas presas, la tubería de capturas lleva suficiente caudal para llenar el depósito de depredadores: retroalimentación positiva de N sobre P (+).'];
+  if(dN<0&&dP>=0) return ['El depósito de presas se vacía; el de depredadores sigue llenándose','Con tantos depredadores, la válvula de capturas está muy abierta y la salida de presas supera a la entrada: retroalimentación negativa de P sobre N (−). Los depredadores aún suben porque el caudal de capturas sigue superando a sus muertes.'];
+  if(dN<0&&dP<0) return ['Ambos depósitos se vacían','Quedan pocas presas, de modo que la tubería de capturas lleva poco caudal: entran menos depredadores de los que mueren. Es la retroalimentación positiva actuando a la baja: menos presas, menos depredadores (+).'];
+  return ['El depósito de presas se recupera; el de depredadores sigue bajando','Con el depósito de depredadores bajo, la válvula de capturas se cierra y los nacimientos de presas vuelven a superar a sus salidas: la retroalimentación negativa en sentido inverso, menos depredadores, más presas (−). El ciclo vuelve a empezar.'];
+}
+
+/* ---------- charts ---------- */
+function drawCharts(){
+  const {ts,N,P,r,K,c,b,d,logi}=S, i=idx, n=N[i], q=P[i];
+  const dN=r*n*(1-n/K)-c*n*q, dP=b*c*n*q-d*q;
+  $('x_time_o').textContent=nf(ts[i],1); $('x_time').value=i;
+  const [t1,t2]=phaseText(dN,dP); $('x_phase').innerHTML='<b>'+t1+'</b>'+t2;
+
+  let p=frame($('x_c1'),{xmin:0,xmax:ts[ts.length-1],ymin:0,ymax:niceMax(Math.max(...N,...P)),xlabel:'Tiempo',ylabel:'Individuos'});
+  p.line(ts,N,C.prey,{a:0.25,w:1.6}); p.line(ts,P,C.pred,{dash:[8,5],a:0.25,w:1.6});
+  p.line(ts.slice(0,i+1),N.slice(0,i+1),C.prey); p.line(ts.slice(0,i+1),P.slice(0,i+1),C.pred,{dash:[8,5]});
+  p.vline(ts[i],C.faint,[3,3]); p.dot(ts[i],n,C.prey); p.dot(ts[i],q,C.pred); p.done();
+
+  const xm=S.Nmax, ym=S.Pmax;
+  p=frame($('x_c2'),{xmin:0,xmax:xm,ymin:0,ymax:ym,xlabel:'Presas (N)',ylabel:'Depredadores (P)'});
+  const ctx=p.ctx;
+  for(let gx=1;gx<=9;gx++)for(let gy=1;gy<=7;gy++){
+    const nn=xm*gx/10,pp=ym*gy/8,u=r*nn*(1-nn/K)-c*nn*pp,v=b*c*nn*pp-d*pp;
+    const su=u/xm*p.pw,sv=-v/ym*p.ph,L=Math.hypot(su,sv); if(L<1e-9)continue;
+    const x0=p.X(nn),y0=p.Y(pp),x1=x0+su/L*12,y1=y0+sv/L*12,a=Math.atan2(y1-y0,x1-x0);
+    ctx.save();ctx.strokeStyle=C.faint;ctx.globalAlpha=0.55;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);
+    ctx.lineTo(x1-4*Math.cos(a-0.5),y1-4*Math.sin(a-0.5));ctx.moveTo(x1,y1);ctx.lineTo(x1-4*Math.cos(a+0.5),y1-4*Math.sin(a+0.5));ctx.stroke();ctx.restore();
+  }
+  if(logi) p.line([0,xm],[r/c,(r/c)*(1-xm/K)],C.prey,{dash:[2,5],w:2.2}); else p.hline(r/c,C.prey,[2,5]);
+  p.vline(S.Ns,C.pred,[2,5],'N* = '+nf(S.Ns,0));
+  p.line(N,P,C.ink,{a:0.15,w:1.4}); p.line(N.slice(0,i+1),P.slice(0,i+1),C.ink,{w:2}); p.dot(n,q,C.ink,6); p.done();
+
+  const fm=niceMax(S.Fmax);
+  p=frame($('x_c5'),{xmin:0,xmax:ts[ts.length-1],ymin:0,ymax:fm,xlabel:'Tiempo',ylabel:'Presas por unidad de tiempo'});
+  p.line(ts,S.birth,C.prey); p.line(ts,S.pred,C.pred,{dash:[8,5]}); if(logi) p.line(ts,S.comp,C.comp,{dash:[2,4]});
+  p.vline(ts[i],C.faint,[3,3]); p.dot(ts[i],S.birth[i],C.prey,4.5); p.dot(ts[i],S.pred[i],C.pred,4.5); p.done();
+
+  const fm2=niceMax(Math.max(...S.conv,...S.mort));
+  p=frame($('x_c6'),{xmin:0,xmax:ts[ts.length-1],ymin:0,ymax:fm2,xlabel:'Tiempo',ylabel:'Depredadores por unidad de tiempo'});
+  p.line(ts,S.conv,C.pred); p.line(ts,S.mort,C.faint,{dash:[8,5]});
+  p.vline(ts[i],C.faint,[3,3]); p.dot(ts[i],S.conv[i],C.pred,4.5); p.dot(ts[i],S.mort[i],C.faint,4.5); p.done();
+
+  const gP=[0,xm].map(v=>b*c*v-d), lo1=Math.min(gP[0],0), hi1=Math.max(gP[1],0.1), s1=niceStep(hi1-lo1,4);
+  p=frame($('x_c3'),{xmin:0,xmax:xm,ymin:Math.floor(lo1/s1)*s1,ymax:Math.ceil(hi1/s1)*s1,xlabel:'Presas (N)',ylabel:'Crecimiento por depredador'});
+  p.vline(S.Ns,C.faint,[2,4],'N*'); p.line([0,xm],gP,C.pred,{w:2.6}); p.dot(n,b*c*n-d,C.pred,6.5);
+  p.text(n,b*c*n-d,(b*c*n-d>=0?'  aumentan':'  disminuyen'),C.pred,'left','bottom'); p.done();
+
+  const base=r*(1-n/K), gN=[base,base-c*ym], lo2=Math.min(gN[1],-0.1,0), hi2=Math.max(r,0.1), s2=niceStep(hi2-lo2,4);
+  p=frame($('x_c4'),{xmin:0,xmax:ym,ymin:Math.floor(lo2/s2)*s2,ymax:Math.ceil(hi2/s2)*s2,xlabel:'Depredadores (P)',ylabel:'Crecimiento por presa'});
+  p.line([0,ym],gN,C.prey,{w:2.6}); p.dot(q,base-c*q,C.prey,6.5);
+  p.text(q,base-c*q,(base-c*q>=0?'  aumentan':'  disminuyen'),C.prey,'left','bottom'); p.done();
+}
+function draw(){ drawStocks(); drawCharts(); }
+function rebuild(){ simulate(); draw(); }
+
+/* ---------- controls ---------- */
+bind(['x_r','x_k','x_c','x_b','x_d','x_n0','x_p0'],{x_r:v=>nf(v,1),x_c:v=>nf(v,3),x_b:v=>nf(v,2),x_d:v=>nf(v,2)},rebuild);
+bind(['x_spd'],{},()=>{});
+function syncK(){ $('x_k_box').style.opacity=$('x_log').checked?1:0.45; $('x_k').disabled=!$('x_log').checked; }
+$('x_log').addEventListener('change',()=>{syncK();rebuild();}); syncK();
+$('x_time').addEventListener('input',()=>{idx=parseInt($('x_time').value,10);draw();});
+function step(){ if(!playing)return; idx+=val('x_spd');
+  if(idx>=S.ts.length-1){idx=S.ts.length-1;draw();stopAnim();return;} draw(); raf=requestAnimationFrame(step); }
+function stopAnim(){ playing=false; if(raf)cancelAnimationFrame(raf); $('x_play').textContent='Reproducir'; }
+$('x_play').addEventListener('click',()=>{ if(playing){stopAnim();return;} if(idx>=S.ts.length-1)idx=0; playing=true; $('x_play').textContent='Pausar'; raf=requestAnimationFrame(step); });
+$('x_reset').addEventListener('click',()=>{stopAnim();idx=0;draw();});
+
+rebuild();
+requestAnimationFrame(animateFlows);
+window.addEventListener('resize',drawCharts);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{readColors();drawCharts();});
+})();
+</script>
+</body>
+</html>
